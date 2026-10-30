@@ -3,11 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Charity Water Game</title>
+    <title>Waves of Change</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Welcome to the Charity Water Game Prototype</h1>
+    <main>
+        <!-- The welcome screen appears before the player starts. -->
+        <section id="welcome-screen" aria-labelledby="game-title">
+            <h1 id="game-title">Waves of Change</h1>
+            <p>
+                Explore how access to clean water can change lives.
+                Complete five levels to learn about charity: water's mission.
+            </p>
+            <button type="button" id="start-game-button">Start Game</button>
+        </section>
+
+        <!-- The game area stays hidden until JavaScript shows it. -->
+        <section id="game-area" aria-labelledby="current-level-name" hidden>
+            <h2 id="current-level-name">Level 1</h2>
+            <p id="level-instructions">
+                Read the instructions and complete the activity.
+            </p>
+            <p>Score: <span id="score">0</span></p>
+
+            <!-- JavaScript can add the current level's activity here. -->
+            <section id="level-activity" aria-labelledby="activity-heading">
+                <h3 id="activity-heading">Level Activity</h3>
+                <div id="activity-content"></div>
+            </section>
+
+            <!-- JavaScript can update this message with feedback. -->
+            <p id="feedback-message" role="status"></p>
+
+            <button type="button" id="next-level-button">
+                Continue to Next Level
+            </button>
+        </section>
+    </main>
     <script src="script.js"></script>
 </body>
 </html>

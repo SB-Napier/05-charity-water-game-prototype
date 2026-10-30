@@ -1,15 +1,229 @@
-/* Charity: water Brand Colors
+/* Brand colors used throughout the game. */
+:root {
+	--brand-yellow: #ffc907;
+	--brand-blue: #2e9df7;
+	--dark-text: #202b33;
+	--muted-text: #4b5962;
+	--light-gray: #f4f7f8;
+	--border-gray: #d7e0e4;
+}
 
-Primary Colors:
-- Yellow:     #FFC907
-- Blue:       #2E9DF7
+/* Set a readable default style for the whole page. */
+* {
+	box-sizing: border-box;
+}
 
-Secondary Colors:
-- Light Blue: #8BD1CB
-- Green:      #4FCB53
-- Orange:     #FF902A
-- Red:        #F5402C
-- Dark Green: #159A48
-- Pink:       #F16061
+body {
+	margin: 0;
+	background-color: #ffffff;
+	color: var(--dark-text);
+	font-family: Arial, Helvetica, sans-serif;
+	line-height: 1.6;
+}
 
-*/
+main {
+	width: min(100% - 3rem, 850px);
+	margin: 0 auto;
+	padding: 3rem 0;
+}
+
+/* Center the introduction and make the game title stand out. */
+#welcome-screen {
+	padding: 2rem 1rem 3rem;
+	text-align: center;
+}
+
+#game-title {
+	margin: 0 0 1rem;
+	font-size: 3rem;
+	line-height: 1.15;
+}
+
+#welcome-screen p {
+	max-width: 600px;
+	margin: 0 auto 1.75rem;
+	color: var(--muted-text);
+	font-size: 1.125rem;
+}
+
+/* Give the active game its own clear area. */
+#game-area {
+	margin-top: 1rem;
+	padding: 2rem;
+	border: 1px solid var(--border-gray);
+	border-top: 6px solid var(--brand-yellow);
+	border-radius: 8px;
+	background-color: var(--light-gray);
+}
+
+/* Keep the game area hidden when its HTML hidden attribute is present. */
+#game-area[hidden] {
+	display: none;
+}
+
+#current-level-name {
+	margin: 0 0 0.5rem;
+	font-size: 1.75rem;
+}
+
+#level-instructions {
+	margin-top: 0;
+	color: var(--muted-text);
+}
+
+#score {
+	display: inline-flex;
+	min-width: 2.5rem;
+	justify-content: center;
+	padding: 0.15rem 0.6rem;
+	border-radius: 6px;
+	background-color: var(--brand-yellow);
+	font-weight: bold;
+}
+
+/* Set off the activity and leave space for JavaScript feedback. */
+#level-activity {
+	margin: 1.5rem 0;
+	padding: 1.25rem;
+	border: 1px solid var(--border-gray);
+	border-radius: 8px;
+	background-color: #ffffff;
+}
+
+#activity-heading {
+	margin-top: 0;
+}
+
+/* Arrange the water drops neatly and make each one easy to click. */
+#activity-content {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.75rem;
+}
+
+#activity-content button {
+	width: 3rem;
+	height: 3rem;
+	padding: 0;
+	border: 2px solid #8bd1cb;
+	border-radius: 6px;
+	background-color: #eaf6ff;
+	cursor: pointer;
+	font-size: 1.6rem;
+	line-height: 1;
+}
+
+#activity-content button:hover:not(:disabled) {
+	border-color: var(--brand-blue);
+	background-color: #d8efff;
+}
+
+#activity-content button:focus-visible {
+	outline: 3px solid var(--brand-blue);
+	outline-offset: 2px;
+}
+
+#activity-content button:disabled {
+	cursor: default;
+	opacity: 0.5;
+}
+
+/* Give the Level 2 question and answers room to use the activity area. */
+#activity-content .scenario-content {
+	width: 100%;
+}
+
+#activity-content .scenario-question {
+	margin: 0 0 0.75rem;
+}
+
+#activity-content .answer-options {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	gap: 0.75rem;
+}
+
+#activity-content .answer-button {
+	width: 100%;
+	max-width: 42rem;
+	min-width: 0;
+	height: auto;
+	min-height: 48px;
+	padding: 0.75rem 1rem;
+	border-color: var(--border-gray);
+	background-color: #ffffff;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	font: inherit;
+	font-size: 1rem;
+	line-height: 1.4;
+	white-space: normal;
+	overflow-wrap: anywhere;
+	text-align: left;
+}
+
+#activity-content .answer-button:hover:not(:disabled) {
+	border-color: var(--brand-blue);
+	background-color: #eaf6ff;
+}
+
+#feedback-message {
+	min-height: 1.6rem;
+	color: var(--muted-text);
+}
+
+/* Make both game buttons easy to see and click. */
+#start-game-button,
+#next-level-button {
+	min-height: 48px;
+	padding: 0.75rem 1.5rem;
+	border: 2px solid var(--brand-yellow);
+	border-radius: 6px;
+	background-color: var(--brand-yellow);
+	color: var(--dark-text);
+	cursor: pointer;
+	font: inherit;
+	font-weight: bold;
+}
+
+#start-game-button:hover,
+#next-level-button:hover {
+	border-color: #e5b400;
+	background-color: #e5b400;
+}
+
+/* Make keyboard focus easy to spot when tabbing through the page. */
+#start-game-button:focus-visible,
+#next-level-button:focus-visible {
+	outline: 3px solid var(--brand-blue);
+	outline-offset: 3px;
+}
+
+/* Use tighter spacing and full-width buttons on small screens. */
+@media (max-width: 600px) {
+	main {
+		width: min(100% - 2rem, 850px);
+		padding: 1.5rem 0;
+	}
+
+	#welcome-screen {
+		padding: 1.5rem 0.25rem 2rem;
+	}
+
+	#game-title {
+		font-size: 2.25rem;
+	}
+
+	#game-area {
+		padding: 1.25rem;
+	}
+
+	#start-game-button,
+	#next-level-button {
+		width: 100%;
+	}
+}

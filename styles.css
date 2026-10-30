@@ -134,6 +134,13 @@ main {
 	width: 100%;
 }
 
+/* Level 3 question counter. */
+#activity-content .question-counter {
+	margin: 0 0 0.25rem;
+	color: var(--muted-text);
+	font-weight: bold;
+}
+
 #activity-content .scenario-question {
 	margin: 0 0 0.75rem;
 }
@@ -171,6 +178,202 @@ main {
 	background-color: #eaf6ff;
 }
 
+/* Level 4 water allocation controls. */
+#activity-content .water-summary {
+	margin: 0 0 1rem;
+}
+
+#activity-content .allocation-row {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	margin-bottom: 0.75rem;
+}
+
+#activity-content .allocation-label {
+	flex: 1;
+	min-width: 0;
+	font-weight: bold;
+}
+
+#activity-content .allocation-amount {
+	min-width: 2rem;
+	text-align: center;
+	font-size: 1.25rem;
+	font-weight: bold;
+}
+
+#activity-content #submit-allocation-button {
+	width: auto;
+	height: auto;
+	min-height: 48px;
+	margin-top: 0.5rem;
+	padding: 0.75rem 1.5rem;
+	border-color: var(--brand-yellow);
+	background-color: var(--brand-yellow);
+	font: inherit;
+	font-weight: bold;
+}
+
+#activity-content #submit-allocation-button:hover:not(:disabled) {
+	border-color: #e5b400;
+	background-color: #e5b400;
+}
+
+/* Level 5 wave: the water grows taller as stages are completed. */
+#activity-content .wave-visual {
+	position: relative;
+	height: 5rem;
+	margin-bottom: 1rem;
+	overflow: hidden;
+	border: 2px solid var(--border-gray);
+	border-radius: 8px;
+	background-color: #f4fbff;
+}
+
+#activity-content .wave-water {
+	position: absolute;
+	bottom: 0;
+	left: -10%;
+	width: 120%;
+	height: 0;
+	border-radius: 60% 60% 0 0 / 30% 30% 0 0;
+	background-color: var(--brand-blue);
+	transition: height 1s ease;
+	animation: wave-sway 3s ease-in-out infinite alternate;
+}
+
+#activity-content .wave-final {
+	border-color: var(--brand-yellow);
+}
+
+#activity-content .wave-final .wave-water {
+	background-color: #1a82d6;
+}
+
+@keyframes wave-sway {
+	from { transform: translateX(-4%); }
+	to { transform: translateX(4%); }
+}
+
+/* Stage drops, Next Stage and Play Again buttons. */
+#activity-content .stage-drops {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+}
+
+#activity-content #next-stage-button,
+#activity-content #play-again-button {
+	width: auto;
+	height: auto;
+	min-height: 48px;
+	margin-top: 1rem;
+	padding: 0.75rem 1.5rem;
+	border-color: var(--brand-yellow);
+	background-color: var(--brand-yellow);
+	font: inherit;
+	font-weight: bold;
+}
+
+#activity-content .final-results {
+	text-align: center;
+}
+
+/* Confetti covers the screen but never blocks clicks. */
+#confetti-container {
+	position: fixed;
+	inset: 0;
+	overflow: hidden;
+	pointer-events: none;
+	z-index: 1000;
+}
+
+.confetti-piece {
+	position: absolute;
+	top: 0;
+	width: 10px;
+	height: 14px;
+	border: 1px solid rgba(32, 43, 51, 0.25);
+	border-radius: 2px;
+}
+
+.confetti-falling {
+	top: -20px;
+	animation-name: confetti-fall;
+	animation-timing-function: linear;
+	animation-fill-mode: forwards;
+}
+
+@keyframes confetti-fall {
+	to {
+		transform: translateY(110vh) rotate(540deg);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	#activity-content .wave-water {
+		animation: none;
+		transition: none;
+	}
+}
+
+/* Level 2 play area, bucket, and falling drops. */
+#activity-content .play-area {
+	position: relative;
+	width: 100%;
+	height: 20rem;
+	overflow: hidden;
+	border: 2px solid var(--border-gray);
+	border-radius: 8px;
+	background-color: #eaf6ff;
+}
+
+/* Shorter play area inside Level 5 so the bucket and buttons fit on screen. */
+#stage-area .play-area {
+	height: 14rem;
+}
+
+#activity-content .bucket {
+	position: absolute;
+	bottom: 0;
+	width: 5rem;
+	height: 40px;
+	background-color: var(--brand-yellow);
+	border-radius: 0 0 12px 12px;
+	text-align: center;
+	line-height: 40px;
+}
+
+#activity-content .falling-drop {
+	position: absolute;
+	width: 32px;
+	height: 32px;
+	line-height: 32px;
+	text-align: center;
+	font-size: 1.4rem;
+}
+
+#activity-content .contaminated-drop {
+	filter: hue-rotate(90deg) saturate(2);
+	background-color: #8a6d3b;
+	border-radius: 50%;
+}
+
+#activity-content .bucket-controls {
+	display: flex;
+	justify-content: center;
+	gap: 1rem;
+	margin-top: 0.75rem;
+}
+
+#activity-content .bucket-controls button {
+	width: 5rem;
+	height: 3.5rem;
+	touch-action: manipulation;
+	user-select: none;
+}
+
 #feedback-message {
 	min-height: 1.6rem;
 	color: var(--muted-text);
@@ -188,6 +391,29 @@ main {
 	cursor: pointer;
 	font: inherit;
 	font-weight: bold;
+}
+
+/* Reset Game is a secondary button: same shape, outlined instead of filled. */
+#reset-game-button {
+	min-height: 48px;
+	margin-bottom: 0.5rem;
+	padding: 0.5rem 1.25rem;
+	border: 2px solid var(--brand-blue);
+	border-radius: 6px;
+	background-color: #ffffff;
+	color: var(--dark-text);
+	cursor: pointer;
+	font: inherit;
+	font-weight: bold;
+}
+
+#reset-game-button:hover {
+	background-color: #eaf6ff;
+}
+
+#reset-game-button:focus-visible {
+	outline: 3px solid var(--brand-blue);
+	outline-offset: 3px;
 }
 
 #start-game-button:hover,
@@ -223,7 +449,10 @@ main {
 	}
 
 	#start-game-button,
-	#next-level-button {
+	#next-level-button,
+	#reset-game-button,
+	#activity-content #next-stage-button,
+	#activity-content #play-again-button {
 		width: 100%;
 	}
 }
